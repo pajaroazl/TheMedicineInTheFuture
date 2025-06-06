@@ -98,7 +98,7 @@ h1.visible {
 .layer:nth-child(1) {
   z-index: 1;
   background-image:
-    url('https://i.postimg.cc/7J9yS4p6/Chat-GPT-Image-25-may-2025-17-23-17-3.png');
+    url('images/ChatGPT\ Image\ 25\ may\ 2025\,\ 17_23_17\ \(3\).png');
   background-repeat: repeat-y, no-repeat;
   background-position: top center, bottom center;
   background-size: contain, cover;
@@ -106,15 +106,15 @@ h1.visible {
 
 .layer:nth-child(2) {
   z-index: 2;
-  background-image: url('https://i.postimg.cc/HntGkwCs/generate-an-image-of-the-number-3-the-background-maintaining-the-same-size-etc.png');
+  background-image: url('images/generate\ an\ image\ of\ the\ number\ 3\,\ the\ background\ maintaining\ the\ same\ size\ etc.png');
 }
 .layer:nth-child(3) {
   z-index: 3;
-  background-image: url('https://i.postimg.cc/QxVK50H7/y.png');
+  background-image: url('images/y.png');
 }
 .layer:nth-child(4) {
   z-index: 4;
-  background-image: url('https://i.postimg.cc/yYJC0ZBx/t.png');
+  background-image: url('images/t.png');
 }
 
 .after-parallax {
