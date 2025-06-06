@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parallax Demo</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="overlay" id="overlay"></div>
+    <header>
+      <h1 id="trigger">THE MEDICINE IN THE FUTURE</h1>
+    </header>
+
+    <div class="parallax-container">
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+    </div>
+
+    <div class="after-parallax"></div>
+
+    <!-- 🎥 Video justo después del parallax -->
+    <div class="video-wrapper">
+      <img
+        src="https://i.postimg.cc/ydGrNDwS/Imagen-pegada.png"
+        alt="Fondo del video"
+        class="video-background hidden"
+        id="imagenFondo"
+      />
+      <div id="posterOverlayTomato">
+        <p id="tituloposter">THE MEDICINE IN THE FUTURE</p>
+      </div>
+
+      <video id="introVideo" muted>
+        <source src="images/202505301433 (2).mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <div id="aftervideo"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,274 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: black;
+  scroll-behavior: smooth;
+  font-family: 'Boizenburg', sans-serif;
+  font-size: clamp(12px, 1.2vw, 18px); /* Escala con el tamaño de pantalla */
+}
+
+@font-face {
+  font-family: 'Boizenburg';
+  src: url('images/Boizenburg-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: black;
+  z-index: 999;
+  transition: opacity 1s ease;
+  pointer-events: none;
+}
+
+.overlay.stage-1 {
+  opacity: 0.98;
+}
+
+.overlay.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+header {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 10;
+}
+
+h1 {
+  padding: 0.5em;
+  color: black;
+  text-shadow: 2px 2px 0 white, 4px 4px 0 black;
+  text-align: center;
+  margin: 10vh 5vw;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: bold;
+  font-size: clamp(3em, 8vw, 8em);
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes neonGlow {
+  0% {
+    text-shadow: 0 0 5px cyan, 0 0 10px cyan, 0 0 20px blue;
+  }
+  100% {
+    text-shadow: 0 0 10px blue, 0 0 20px cyan, 0 0 30px white;
+  }
+}
+
+h1.visible {
+  display: block;
+  opacity: 1;
+}
+
+@keyframes neonBlink {
+  0% { text-shadow: 0 0 5px cyan, 0 0 10px blue; }
+  100% { text-shadow: 0 0 20px cyan, 0 0 40px blue; }
+}
+
+.parallax-container {
+  position: relative;
+  height: 300vh; /* 3x altura de pantalla */
+  width: 100%;
+  overflow: hidden;
+  transform: translateY(-100vh);
+}
+
+.layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat-y;
+  background-position: center top;
+  background-size: contain;
+  pointer-events: none;
+}
+
+.layer:nth-child(1) {
+  z-index: 1;
+  background-image:
+    url('https://i.postimg.cc/7J9yS4p6/Chat-GPT-Image-25-may-2025-17-23-17-3.png');
+  background-repeat: repeat-y, no-repeat;
+  background-position: top center, bottom center;
+  background-size: contain, cover;
+}
+
+.layer:nth-child(2) {
+  z-index: 2;
+  background-image: url('https://i.postimg.cc/HntGkwCs/generate-an-image-of-the-number-3-the-background-maintaining-the-same-size-etc.png');
+}
+.layer:nth-child(3) {
+  z-index: 3;
+  background-image: url('https://i.postimg.cc/QxVK50H7/y.png');
+}
+.layer:nth-child(4) {
+  z-index: 4;
+  background-image: url('https://i.postimg.cc/yYJC0ZBx/t.png');
+}
+
+.after-parallax {
+  height: 10vh;
+  background: black;
+}
+
+#overload {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: black;
+  z-index: -1;
+}
+
+h1, #contenido {
+  display: none;
+}
+
+/* Video */
+.video-section {
+  background: black;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-section video,
+#introVideo {
+  width: 100%;
+  max-height: 90vh;
+  object-fit: contain;
+  box-shadow: 0 0 2vw cyan;
+  z-index: 1;
+  transition: opacity 1s ease;
+}
+
+video::-webkit-media-controls {
+  display: none;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  transition: opacity 1s ease;
+}
+
+.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+#aftervideo {
+  height: 10vh;
+}
+
+#posterOverlayTomato {
+  position: absolute;
+  top: 10vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 730px;
+  height: 860px;
+  background: linear-gradient(145deg, #00cce6, #0099cc, #007a99, #005266);
+  z-index: 999;
+  opacity: 1;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  box-sizing: border-box;
+  overflow: hidden;
+  cursor: move;
+  opacity: 0;
+}
+#posterOverlayTomato {
+  position: fixed; /* mejor fixed para moverlo sin problemas */
+  top: 100px;
+  left: 660px;
+  width: 730px;
+  height: 860px;
+  background: linear-gradient(145deg, #00cce6, #0099cc, #007a99, #005266);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  z-index: 9999; /* que esté arriba */
+  user-select: none; /* para evitar selección de texto al arrastrar */
+  box-sizing: border-box; /* mejor manejo de tamaño */
+  overflow: hidden;
+
+  /* máscara para bordes difuminados */
+  -webkit-mask-image: radial-gradient(square at center, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0.5) 85%, rgba(0, 0, 0, 0) 100%);
+  mask-image: radial-gradient(square at center, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0.5) 85%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* estilos para los handlers de resize (esquinas) */
+
+.poster-resizer {
+  position: absolute;
+  background: #00ffff;
+  opacity: 0.6;
+  z-index: 10000;
+}
+
+.poster-resizer.corner {
+  width: 15px;
+  height: 15px;
+  cursor: nwse-resize;
+}
+
+.poster-resizer.edge {
+  width: 10px;
+  height: 10px;
+  opacity: 0; /* invisibles para bordes, si quieres que se vean pon opacity>0 */
+}
+
+/* Posición de cada resizer */
+
+.poster-resizer.nw { top: -7px; left: -7px; cursor: nwse-resize; }
+.poster-resizer.ne { top: -7px; right: -7px; cursor: nesw-resize; }
+.poster-resizer.sw { bottom: -7px; left: -7px; cursor: nesw-resize; }
+.poster-resizer.se { bottom: -7px; right: -7px; cursor: nwse-resize; }
+
+/* Para bordes (si usas) */
+
+.poster-resizer.n { top: -5px; left: 50%; transform: translateX(-50%); cursor: ns-resize; }
+.poster-resizer.s { bottom: -5px; left: 50%; transform: translateX(-50%); cursor: ns-resize; }
+.poster-resizer.e { top: 50%; right: -5px; transform: translateY(-50%); cursor: ew-resize; }
+.poster-resizer.w { top: 50%; left: -5px; transform: translateY(-50%); cursor: ew-resize; }
+
+
+
+#tituloposter {
+  font-size: 10vh;
+  color: white;
+}
