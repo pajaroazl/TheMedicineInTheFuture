@@ -324,3 +324,14 @@ document.addEventListener("DOMContentLoaded", () => {
   poster.style.cursor = 'move';
 });
 
+document.querySelectorAll('.grid-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const isExpanded = item.classList.contains('expanded');
+    // Primero, cerrar todas las celdas
+    document.querySelectorAll('.grid-item').forEach(el => el.classList.remove('expanded'));
+    // Si no estaba expandida, expandirla
+    if (!isExpanded) {
+      item.classList.add('expanded');
+    }
+  });
+});
