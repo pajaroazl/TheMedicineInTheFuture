@@ -323,3 +323,42 @@ video::-webkit-media-controls {
   border-radius: 0.1vh;
   pointer-events: auto;
 }
+
+.hidden-text {
+  display: none;
+  margin-top: 1vh;
+  font-size: 2vh;
+  color: white;
+  text-align: center;
+  padding: 1vh;
+}
+
+.grid-item.expanded .hidden-text {
+  display: block;
+}
+.hover-box {
+  width: 90%;
+  height: 150px; /* o lo que quieras */
+  margin: 20px auto;
+  background: rgba(0,0,0,0.7);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  border-radius: 8px;
+  user-select: none;
+}
+
+.hover-box:hover {
+  opacity: 1;
+}
+
+.hover-box p {
+  margin: 0;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
