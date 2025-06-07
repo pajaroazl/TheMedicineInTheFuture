@@ -272,3 +272,34 @@ video::-webkit-media-controls {
   font-size: 10vh;
   color: white;
 }
+
+.poster-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1vh;
+  margin: 1vh auto;
+  width: 100%;
+  height: 30vh;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.grid-item {
+  background: rgba(255, 255, 255, 0.2);
+  border: 0.1vh solid #ccc;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2vh;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.grid-item:hover {
+  transform: scale(1.1);
+  z-index: 2;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
