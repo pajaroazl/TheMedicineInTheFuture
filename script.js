@@ -335,3 +335,15 @@ document.querySelectorAll('.grid-item').forEach(item => {
     }
   });
 });
+
+ document.addEventListener('keydown', function(event) {
+    if (event.key === '1') {
+      const popup = document.getElementById('popup');
+      popup.style.display = 'block';
+
+      // Ocultar automáticamente después de 3 segundos
+      setTimeout(() => {
+        popup.style.display = 'none';
+      }, 3000);
+    }
+  });

@@ -361,4 +361,17 @@ video::-webkit-media-controls {
   font-size: 1.2rem;
   text-align: center;
 }
-
+   #popup {
+      display: none;
+      position: fixed;
+      top: 20%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #333;
+      color: white;
+      padding: 2rem;
+      font-size: 4rem;
+      border-radius: 0.1vh;
+      box-shadow: 0 0 0 0.5vh rgba(0,0,0,0.5);
+      z-index: 9999;
+    }
