@@ -347,3 +347,52 @@ document.querySelectorAll('.grid-item').forEach(item => {
       }, 3000);
     }
   });
+  const audio = document.getElementById('big-music');
+  let playCount = 0;  // Contador de veces que se ha reproducido
+
+  function fadeOutAndPause(audioElement, duration = 2000) {
+    const stepTime = 50;
+    const steps = duration / stepTime;
+    let volume = audioElement.volume;
+    const volumeStep = volume / steps;
+
+    const fadeInterval = setInterval(() => {
+      volume -= volumeStep;
+      if (volume <= 0) {
+        audioElement.volume = 0;
+        audioElement.pause();
+        clearInterval(fadeInterval);
+        // No reseteamos volumen aquí porque depende de la próxima reproducción
+      } else {
+        audioElement.volume = volume;
+      }
+    }, stepTime);
+  }
+
+  window.addEventListener('keydown', (event) => {
+    if (event.key === '2') {
+      if (audio.paused) {
+        playCount++;
+        if (playCount === 1) {
+          // Primera reproducción: salta a segundo 40 y volumen bajo
+          if (audio.readyState >= 1) {
+            audio.volume = 0.1;
+            audio.currentTime = 40;
+            audio.play();
+          } else {
+            audio.addEventListener('loadedmetadata', () => {
+              audio.volume = 0.1;
+              audio.currentTime = 40;
+              audio.play();
+            }, { once: true });
+          }
+        } else {
+          // Reproducciones siguientes: volumen alto y continua donde estaba
+          audio.volume = 0.8;
+          audio.play();
+        }
+      } else {
+        fadeOutAndPause(audio, 2000);
+      }
+    }
+  });

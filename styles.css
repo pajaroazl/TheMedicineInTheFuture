@@ -20,7 +20,7 @@ html, body {
   inset: 0;
   background: black;
   z-index: 999;
-  transition: opacity 1s ease;
+  transition: opacity 12s ease;
   pointer-events: none;
 }
 
