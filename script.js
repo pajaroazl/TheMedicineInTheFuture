@@ -344,58 +344,74 @@ document.querySelectorAll('.grid-item').forEach(item => {
       // Ocultar automáticamente después de 3 segundos
       setTimeout(() => {
         popup.style.display = 'none';
-      }, 3000);
+      }, 9000);
     }
   });
-  const audio = document.getElementById('big-music');
-  let playCount = 0;  // Contador de veces que se ha reproducido
+document.addEventListener("DOMContentLoaded", () => {
+  const audio = document.getElementById("big-music");
+  let playCount = 0;
 
-  function fadeOutAndPause(audioElement, duration = 2000) {
+  function fadeIn(audioElement, targetVolume = 0.8, duration = 2000) {
     const stepTime = 50;
     const steps = duration / stepTime;
     let volume = audioElement.volume;
-    const volumeStep = volume / steps;
+    const volumeStep = (targetVolume - volume) / steps;
 
-    const fadeInterval = setInterval(() => {
-      volume -= volumeStep;
-      if (volume <= 0) {
-        audioElement.volume = 0;
-        audioElement.pause();
-        clearInterval(fadeInterval);
-        // No reseteamos volumen aquí porque depende de la próxima reproducción
+    const fade = setInterval(() => {
+      volume += volumeStep;
+      if (volume >= targetVolume) {
+        audioElement.volume = targetVolume;
+        clearInterval(fade);
       } else {
         audioElement.volume = volume;
       }
     }, stepTime);
   }
 
-  window.addEventListener('keydown', (event) => {
-    if (event.key === '2') {
-      if (audio.paused) {
-        playCount++;
-        if (playCount === 1) {
-          // Primera reproducción: salta a segundo 40 y volumen bajo
-          if (audio.readyState >= 1) {
+  function fadeOut(audioElement, duration = 2000) {
+    const stepTime = 50;
+    const steps = duration / stepTime;
+    let volume = audioElement.volume;
+    const volumeStep = volume / steps;
+
+    const fade = setInterval(() => {
+      volume -= volumeStep;
+      if (volume <= 0) {
+        audioElement.volume = 0;
+        audioElement.pause();
+        clearInterval(fade);
+      } else {
+        audioElement.volume = volume;
+      }
+    }, stepTime);
+  }
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === "2") {
+      playCount++;
+
+      if (playCount === 1) {
+        if (audio.readyState >= 2) {
+          audio.volume = 0.1;
+          audio.currentTime = 0;
+          audio.play();
+        } else {
+          audio.addEventListener("canplaythrough", () => {
             audio.volume = 0.1;
             audio.currentTime = 0;
             audio.play();
-          } else {
-            audio.addEventListener('loadedmetadata', () => {
-              audio.volume = 0.1;
-              audio.currentTime = 0;
-              audio.play();
-            }, { once: true });
-          }
-        } else {
-          // Reproducciones siguientes: volumen alto y continua donde estaba
-          audio.volume = 0.8;
-          audio.play();
+          }, { once: true });
         }
-      } else {
-        fadeOutAndPause(audio, 2000);
+      } else if (playCount === 2) {
+        fadeOut(audio, 2000);
+      } else if (playCount === 3) {
+        audio.play();
+        fadeIn(audio, 0.8, 2000);
+        playCount = 0; // Reset count after third press
       }
     }
   });
+});
 
   (function() {
   let isScrolling = false;
@@ -441,3 +457,4 @@ document.querySelectorAll('.grid-item').forEach(item => {
 
   document.addEventListener('keydown', onScrollKey, { passive: false });
 })();
+
