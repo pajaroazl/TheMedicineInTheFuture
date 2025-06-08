@@ -377,12 +377,12 @@ document.querySelectorAll('.grid-item').forEach(item => {
           // Primera reproducción: salta a segundo 40 y volumen bajo
           if (audio.readyState >= 1) {
             audio.volume = 0.1;
-            audio.currentTime = 40;
+            audio.currentTime = 0;
             audio.play();
           } else {
             audio.addEventListener('loadedmetadata', () => {
               audio.volume = 0.1;
-              audio.currentTime = 40;
+              audio.currentTime = 0;
               audio.play();
             }, { once: true });
           }
@@ -396,3 +396,48 @@ document.querySelectorAll('.grid-item').forEach(item => {
       }
     }
   });
+
+  (function() {
+  let isScrolling = false;
+
+  const scrollSpeed = 1; // menor número = más lento
+  const scrollStep = 10;  // cantidad de píxeles por paso
+  const interval = 10;    // milisegundos entre pasos
+
+  function smoothScroll(delta) {
+    if (isScrolling) return;
+    isScrolling = true;
+    
+    let scrolled = 0;
+
+    const step = () => {
+      if (scrolled < Math.abs(delta)) {
+        const move = delta > 0 ? scrollStep : -scrollStep;
+        window.scrollBy(0, move);
+        scrolled += scrollStep;
+        setTimeout(step, interval);
+      } else {
+        isScrolling = false;
+      }
+    };
+
+    step();
+  }
+
+  function onScrollKey(e) {
+    const keys = {
+      ArrowDown: 100,
+      ArrowUp: -100,
+      PageDown: window.innerHeight,
+      PageUp: -window.innerHeight,
+      ' ': e.shiftKey ? -window.innerHeight : window.innerHeight,
+    };
+
+    if (keys[e.key] !== undefined) {
+      e.preventDefault();
+      smoothScroll(keys[e.key]);
+    }
+  }
+
+  document.addEventListener('keydown', onScrollKey, { passive: false });
+})();

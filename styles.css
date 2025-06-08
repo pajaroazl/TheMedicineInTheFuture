@@ -8,6 +8,10 @@ html, body {
   font-size: clamp(12px, 1.2vw, 18px); /* Escala con el tamaño de pantalla */
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 @font-face {
   font-family: 'Boizenburg';
   src: url('images/Boizenburg-Regular.ttf') format('truetype');
