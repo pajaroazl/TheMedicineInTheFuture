@@ -368,8 +368,9 @@ video::-webkit-media-controls {
    #popup {
       display: none;
       position: fixed;
+      align-items: center;
       top: 75%;
-      left: 50%;
+      left: 25%;
       transform: translateX(-50%);
       background-color: #333;
       color: white;
@@ -378,6 +379,23 @@ video::-webkit-media-controls {
       border-radius: 0.1vh;
       box-shadow: 0 0 0 0.5vh rgba(0,0,0,0.5);
       z-index: 9999;
+      
     }
 
+    .blur-in-expand {
+  animation: blur-in-expand 0.6s linear both;
+}
+
+@keyframes blur-in-expand {
+  0% {
+    transform: scale(0);
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    filter: blur(0);
+    opacity: 1;
+  }
+}
     

@@ -336,17 +336,24 @@ document.querySelectorAll('.grid-item').forEach(item => {
   });
 });
 
- document.addEventListener('keydown', function(event) {
-    if (event.key === '1') {
-      const popup = document.getElementById('popup');
-      popup.style.display = 'block';
+document.addEventListener('keydown', function(event) {
+  if (event.key === '1') {
+    const popup = document.getElementById('popup');
+    
+    // Mostrar y animar el popup
+    popup.style.display = 'block';
+    popup.classList.remove('blur-in-expand'); // Reiniciar animación
+    void popup.offsetWidth; // Forzar reflujo para reinicio
+    popup.classList.add('blur-in-expand');
 
-      // Ocultar automáticamente después de 3 segundos
-      setTimeout(() => {
-        popup.style.display = 'none';
-      }, 9000);
-    }
-  });
+    // Ocultar automáticamente después de 9 segundos
+    setTimeout(() => {
+      popup.style.display = 'none';
+      popup.classList.remove('blur-in-expand'); // Limpiar clase por si se vuelve a mostrar
+    }, 90000);
+  }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
   const audio = document.getElementById("big-music");
   let playCount = 0;
