@@ -392,7 +392,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (playCount === 1) {
         if (audio.readyState >= 2) {
-          audio.volume = 0.1;
+          audio.volume = 0.5;
           audio.currentTime = 0;
           audio.play();
         } else {
