@@ -458,3 +458,21 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener('keydown', onScrollKey, { passive: false });
 })();
 
+    // Función para entrar en modo pantalla completa
+    function activarPantallaCompleta() {
+      const elem = document.documentElement; // toda la página
+      if (elem.requestFullscreen) {
+        elem.requestFullscreen();
+      } else if (elem.webkitRequestFullscreen) { // Safari
+        elem.webkitRequestFullscreen();
+      } else if (elem.msRequestFullscreen) { // IE11
+        elem.msRequestFullscreen();
+      }
+    }
+
+    // Escuchar el evento de teclado
+    document.addEventListener('keydown', function(event) {
+      if (event.key === '3') {
+        activarPantallaCompleta();
+      }
+    });
